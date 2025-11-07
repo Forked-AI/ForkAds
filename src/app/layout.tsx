@@ -1,19 +1,19 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import Script from 'next/script'
-import './globals.css'
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Script from "next/script";
+import "./globals.css";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Fork.AI Ads Platform',
-  description: 'Ad showcase platform with multiple ad provider integrations',
-}
+  title: "Fork.AI Ads Platform",
+  description: "Ad showcase platform with multiple ad provider integrations",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -25,7 +25,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        {/* Optional: Enable page-level ads (Auto Ads) */}
+        {/* Enable page-level ads (Auto Ads) */}
         <Script id="adsense-auto-ads" strategy="afterInteractive">
           {`
             (adsbygoogle = window.adsbygoogle || []).push({
@@ -37,5 +37,5 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>{children}</body>
     </html>
-  )
+  );
 }
