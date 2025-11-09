@@ -1,8 +1,40 @@
 # Fork.AI Ads Platform
 
-A Next.js-based ad showcase platform for displaying and integrating multiple ad providers including video, banner, and native ads.
+A comprehensive Next.js-based ad management platform featuring:
+- 🤖 **Google AdSense Integration** (Auto Ads + Manual Placement)
+- 🚀 **Self-Hosted Ad System** with database-backed ad management
+- 📊 **Real-time Analytics** (Impressions, Clicks, CTR)
+- 🎨 **Multiple Ad Formats** (Video, Banner, Native)
+- 💰 **Zero Fees** - Full control over your advertising
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## ✨ Features
+
+### 1. Self-Hosted Ads System
+- Create and manage your own ads through an admin dashboard
+- Track impressions and clicks automatically
+- Calculate CTR (Click-Through Rate) in real-time
+- Toggle ads on/off without deleting
+- 3 ad formats: Horizontal, Vertical, Square
+- PostgreSQL database with Prisma ORM
+
+### 2. Google AdSense Integration
+- Auto Ads - Google automatically places ads
+- Manual placement with custom ad units
+- Live integration with publisher ID: `ca-pub-2936566029635389`
+
+### 3. Additional Ad Providers (Documentation)
+- Amazon Associates
+- Media.net
+- PropellerAds
+- Taboola
+- Outbrain
+- AdThrive
+- Ezoic
+- Monumetric
+- Mediavine
+- Carbon Ads
 
 ## 🚀 Quick Start
 
@@ -29,25 +61,45 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 fork-ads/
 ├── src/
 │   ├── app/
-│   │   ├── ads/
-│   │   │   └── page.tsx          # Ad showcase page
-│   │   ├── layout.tsx
+│   │   ├── ads/                   # Ad showcase
+│   │   ├── adsense/               # Manual AdSense placement
+│   │   ├── auto-ads/              # Auto Ads demo
+│   │   ├── self-hosted-ads/       # Self-hosted ad demo
+│   │   ├── admin/
+│   │   │   └── ads/               # Ad management dashboard
+│   │   ├── api/
+│   │   │   └── ads/               # REST API for ad CRUD
+│   │   ├── layout.tsx             # Root layout with AdSense
 │   │   ├── page.tsx               # Home page
 │   │   └── globals.css
 │   ├── components/
 │   │   └── ads/
 │   │       ├── GoogleAd.tsx       # Google AdSense component
+│   │       ├── SelfHostedAd.tsx   # Self-hosted ad component
 │   │       ├── VideoAd.tsx        # Video ad component (IMA SDK)
 │   │       ├── NativeAd.tsx       # Native ad component
-│   │       ├── LazyAd.tsx         # Lazy loading wrapper
-│   │       └── README.md
-│   └── config/
-│       └── adConfig.ts            # Ad provider configuration
+│   │       └── LazyAd.tsx         # Lazy loading wrapper
+│   ├── config/
+│   │   └── adConfig.ts            # Ad provider configuration
+│   └── lib/
+│       └── prisma.ts              # Prisma client instance
+├── prisma/
+│   └── schema.prisma              # Database schema
 ├── public/
 ├── README.md
-├── README_ADS.md                  # Detailed ad integration guide
+├── README_ADS.md                  # AdSense integration guide
+├── SELF_HOSTED_ADS_GUIDE.md       # Self-hosted ads guide
 └── package.json
 ```
+
+## 🎯 Key Pages
+
+- **`/`** - Home page with links to all features
+- **`/self-hosted-ads`** - Self-hosted ads demo and documentation
+- **`/admin/ads`** - Admin dashboard to create/manage ads
+- **`/ads`** - Ad showcase (Video, Banner, Native)
+- **`/adsense`** - Manual AdSense placement examples
+- **`/auto-ads`** - Auto Ads explanation and demo
 
 ## 🎯 Features
 
