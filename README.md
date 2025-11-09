@@ -3,6 +3,7 @@
 A comprehensive Next.js-based ad management platform featuring:
 - 🤖 **Google AdSense Integration** (Auto Ads + Manual Placement)
 - 🚀 **Self-Hosted Ad System** with database-backed ad management
+- ☁️ **Cloudinary Image Storage** (Production-ready, CDN-powered)
 - 📊 **Real-time Analytics** (Impressions, Clicks, CTR)
 - 🎨 **Multiple Ad Formats** (Video, Banner, Native)
 - 💰 **Zero Fees** - Full control over your advertising
@@ -13,11 +14,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ### 1. Self-Hosted Ads System
 - Create and manage your own ads through an admin dashboard
+- **☁️ Cloudinary Integration** - Production-ready cloud image storage
 - Track impressions and clicks automatically
 - Calculate CTR (Click-Through Rate) in real-time
 - Toggle ads on/off without deleting
 - 3 ad formats: Horizontal, Vertical, Square
 - PostgreSQL database with Prisma ORM
+- Global CDN-powered image delivery
 
 ### 2. Google AdSense Integration
 - Auto Ads - Google automatically places ads
@@ -68,17 +71,19 @@ fork-ads/
 │   │   ├── admin/
 │   │   │   └── ads/               # Ad management dashboard
 │   │   ├── api/
-│   │   │   └── ads/               # REST API for ad CRUD
+│   │   │   ├── ads/               # REST API for ad CRUD
+│   │   │   └── sign-cloudinary-params/  # Cloudinary signature
 │   │   ├── layout.tsx             # Root layout with AdSense
 │   │   ├── page.tsx               # Home page
 │   │   └── globals.css
 │   ├── components/
-│   │   └── ads/
-│   │       ├── GoogleAd.tsx       # Google AdSense component
-│   │       ├── SelfHostedAd.tsx   # Self-hosted ad component
-│   │       ├── VideoAd.tsx        # Video ad component (IMA SDK)
-│   │       ├── NativeAd.tsx       # Native ad component
-│   │       └── LazyAd.tsx         # Lazy loading wrapper
+│   │   ├── ads/
+│   │   │   ├── GoogleAd.tsx       # Google AdSense component
+│   │   │   ├── SelfHostedAd.tsx   # Self-hosted ad component
+│   │   │   ├── VideoAd.tsx        # Video ad component (IMA SDK)
+│   │   │   ├── NativeAd.tsx       # Native ad component
+│   │   │   └── LazyAd.tsx         # Lazy loading wrapper
+│   │   └── CloudinaryUploadWidget.tsx  # Cloudinary upload
 │   ├── config/
 │   │   └── adConfig.ts            # Ad provider configuration
 │   └── lib/
@@ -89,6 +94,8 @@ fork-ads/
 ├── README.md
 ├── README_ADS.md                  # AdSense integration guide
 ├── SELF_HOSTED_ADS_GUIDE.md       # Self-hosted ads guide
+├── CLOUDINARY_GUIDE.md            # Cloudinary integration guide
+├── CLOUDINARY_QUICK_START.md      # Cloudinary quick reference
 └── package.json
 ```
 

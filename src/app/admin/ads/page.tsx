@@ -1,6 +1,6 @@
 'use client';
 
-import ImageUploadManager from '@/components/ImageUploadManager';
+import CloudinaryImageManager from '@/components/CloudinaryImageManager';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -29,7 +29,6 @@ export default function AdminAdsPage() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [isUploadManagerOpen, setIsUploadManagerOpen] = useState(false);
   
   const [formData, setFormData] = useState<FormData>({
     title: '',
@@ -165,53 +164,11 @@ export default function AdminAdsPage() {
               <label className="block text-sm font-medium mb-1">
                 Image <span className="text-red-500">*</span>
               </label>
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  onClick={() => setIsUploadManagerOpen(true)}
-                  className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium flex items-center gap-2"
-                >
-                  📁 {formData.imageUrl ? 'Change Image' : 'Upload Image'}
-                </button>
-                {formData.imageUrl && (
-                  <button
-                    type="button"
-                    onClick={() => setFormData({ ...formData, imageUrl: '' })}
-                    className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg"
-                  >
-                    Remove
-                  </button>
-                )}
-              </div>
-              
-              {formData.imageUrl && (
-                <div className="mt-3">
-                  <div className="relative w-full h-48 rounded-lg overflow-hidden border-2 border-green-500">
-                    <Image
-                      src={formData.imageUrl}
-                      alt="Preview"
-                      fill
-                      className="object-cover"
-                      onError={() => alert('Invalid image URL')}
-                    />
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                    ✓ Image selected: <span className="font-mono text-xs">{formData.imageUrl}</span>
-                  </p>
-                </div>
-              )}
-
-              {!formData.imageUrl && (
-                <p className="text-sm text-gray-500 mt-2">
-                  Click &quot;Upload Image&quot; to select or upload an image from your computer
-                </p>
-              )}
-
-              {/* Hidden input for form validation */}
-              <input
-                type="hidden"
+              <CloudinaryImageManager
+                currentImageUrls={formData.imageUrl ? [formData.imageUrl] : []}
+                onImagesChange={(urls) => setFormData({ ...formData, imageUrl: urls[0] || '' })}
+                maxFiles={1}
                 required
-                value={formData.imageUrl}
               />
             </div>
 
@@ -351,16 +308,6 @@ export default function AdminAdsPage() {
           )}
         </div>
       </div>
-
-      {/* Image Upload Manager Modal */}
-      <ImageUploadManager
-        isOpen={isUploadManagerOpen}
-        onClose={() => setIsUploadManagerOpen(false)}
-        onSelectImage={(url) => {
-          setFormData({ ...formData, imageUrl: url });
-          setIsUploadManagerOpen(false);
-        }}
-      />
     </div>
   );
 }
